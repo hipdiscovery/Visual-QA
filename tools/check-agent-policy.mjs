@@ -3,7 +3,10 @@ import { join, relative } from "node:path";
 
 const ROOT = process.cwd();
 const AGENTS = "AGENTS.md";
-const SHARED = "docs/agent-guides/agent-contract.md";
+// The shared contract is referenced by version, never copied. The version itself is
+// checked by hipdiscovery/claude-instructions/shared/check-contract.mjs.
+const CONTRACT_REF = /^Shared contract: hipdiscovery\/claude-instructions\/shared\/AGENT-CONTRACT\.md @ \d{4}-\d{2}-\d{2}$/m;
+const LOCAL_COPY = "docs/agent-guides/agent-contract.md";
 const FORBIDDEN_FILES = new Set(["CLAUDE.md", "CODEX.md", "CHATGPT.md"]);
 const FORBIDDEN_DIRS = new Set([".claude", ".codex", ".agents"]);
 const SKIP_DIRS = new Set([".git", "node_modules", ".wrangler", "coverage", "dist", "build", ".build"]);
@@ -22,21 +25,12 @@ if (!existsSync(join(ROOT, AGENTS))) {
   const text = data.toString("utf8");
   const lines = logicalLines(text);
   if (data.length > 12_288 || lines > 200) problems.push(`AGENTS.md exceeds hard ceiling (${data.length} bytes, ${lines} lines)`);
-  if (!text.includes(SHARED)) problems.push(`AGENTS.md must reference ${SHARED}`);
+  if (!CONTRACT_REF.test(text)) problems.push("AGENTS.md must end with the versioned shared-contract reference line");
   if (!/master/i.test(text)) problems.push("AGENTS.md must state master-only repository policy");
   if (!/GitHub Actions/i.test(text)) problems.push("AGENTS.md must state the no-GitHub-Actions policy");
 }
 
-if (!existsSync(join(ROOT, SHARED))) {
-  problems.push(`missing shared contract discovery file: ${SHARED}`);
-} else {
-  const shared = readFileSync(join(ROOT, SHARED), "utf8");
-  if (!/Contract version:\s*\d{4}-\d{2}-\d{2}/.test(shared)) problems.push("shared contract must carry a dated contract version");
-  if (!shared.includes("hipdiscovery/Backend-Work/docs/agent-guides/agent-contract.md")) problems.push("shared contract must identify the canonical Backend-Work source");
-  for (const phrase of ["Metered", "Automation", "idempot", "API", "AI", "Verification"]) {
-    if (!shared.toLowerCase().includes(phrase.toLowerCase())) problems.push(`shared contract missing policy marker: ${phrase}`);
-  }
-}
+if (existsSync(join(ROOT, LOCAL_COPY))) problems.push(`${LOCAL_COPY} must not exist: reference the shared contract instead of copying it`);
 
 function walk(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -66,4 +60,4 @@ if (problems.length) {
   process.exit(1);
 }
 
-console.log("Agent policy OK: root AGENTS.md, shared contract path, no vendor mirrors/Actions, size policy present.");
+console.log("Agent policy OK: root AGENTS.md, versioned shared-contract reference, no vendor mirrors/Actions, size policy present.");
