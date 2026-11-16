@@ -4,11 +4,11 @@ Local, disposable browser QA for **publicly reachable UI only**.
 
 This repository does not contain HipDiscovery's private application or website source. It opens an allowlisted public URL in a fresh Chromium-family browser session, captures representative screenshots, records lightweight layout/runtime diagnostics, and writes short-lived evidence to local `out/`.
 
-## Why this stays separate from Hip Native Bridge
+## Why this stays separate from Hip MCP
 
-Hip Native Bridge is the privileged local control plane: it can operate the real browser, files, processes, Git repositories, and desktop. Visual QA is intentionally narrower and disposable: it renders only allowlisted public pages in fresh isolated browser contexts and produces repeatable viewport/journey evidence.
+Hip MCP (`hipdiscovery/Hip-MCP`, formerly Hip Native Bridge) is the privileged local control plane: it can operate the real browser, files, processes, Git repositories, and desktop. Visual QA is intentionally narrower and disposable: it renders only allowlisted public pages in fresh isolated browser contexts and produces repeatable viewport/journey evidence.
 
-Keeping them separate avoids giving the QA harness Bridge permissions, avoids adding Playwright to the Bridge runtime, and keeps public rendering independent from logged-in browser state. When Hip Bridge is available it may start this runner like any other local project/process, but Visual QA never receives Bridge tokens, credentials, browser profiles, or private source.
+Keeping them separate avoids giving the QA harness Bridge permissions, avoids adding Playwright to the Bridge runtime, and keeps public rendering independent from logged-in browser state. When Hip MCP is available it may start this runner like any other local project/process, but Visual QA never receives Bridge tokens, credentials, browser profiles, or private source.
 
 ## Install and verify
 

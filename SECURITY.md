@@ -22,7 +22,7 @@ Targets are explicitly allowlisted in `qa/targets.json`. Requests select a targe
 
 The browser uses a fresh context for every viewport with no persisted profile. Service workers are blocked. HTTP(S) page traffic is limited to GET/HEAD, main-frame navigation is confined to the target allowlist, non-web schemes are blocked, and loopback/link-local/private-network destinations are blocked both as literal IPs and after DNS resolution.
 
-Hip Native Bridge may start Visual QA as a normal local process, but Visual QA must not receive Bridge session tokens, logged-in browser state, private-file access, or other privileged capabilities. The narrow renderer and the privileged control bridge are separate trust boundaries by design.
+Hip MCP (`hipdiscovery/Hip-MCP`) may start Visual QA as a normal local process, but Visual QA must not receive Bridge session tokens, logged-in browser state, private-file access, or other privileged capabilities. The narrow renderer and the privileged control bridge are separate trust boundaries by design.
 
 ## Output lifecycle
 

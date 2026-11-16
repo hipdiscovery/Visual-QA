@@ -11,7 +11,7 @@ Before proposing a change:
 - Keep dependencies exact-version pinned and integrity locked.
 - Generated screenshots/reports belong only in ignored local `out/` or another disposable local workspace; never commit them.
 - Do not weaken or bypass `qa/policy-check.mjs`.
-- Keep Hip Native Bridge and Visual QA privilege boundaries separate. Bridge may launch the runner, but this repository must not gain Bridge credentials, private file access, or logged-in browser state.
+- Keep Hip MCP (hipdiscovery/Hip-MCP) and Visual QA privilege boundaries separate. Bridge may launch the runner, but this repository must not gain Bridge credentials, private file access, or logged-in browser state.
 - `qa/run.mjs` is a legacy oversized file under a no-growth baseline. Prefer extracting focused modules over adding more logic directly to it.
 
 Review security-model changes carefully before merging them to `master`.
