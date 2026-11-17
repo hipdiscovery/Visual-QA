@@ -36,5 +36,5 @@ None. Requests and outputs must never contain credentials, cookies, headers, sig
 - Request limits are 1 to 4 probes of 5 MiB each, 1 to 20 journeys and 100 steps; the schema has no tracing field, so do not invent one.
 - Screenshots cannot verify native controls or audio; report those surfaces as untested.
 
-Shared contract: hipdiscovery/claude-instructions/shared/AGENT-CONTRACT.md @ 2026-11-16
-System map and shared ceilings: hipdiscovery/claude-instructions/SYSTEM.md
+Shared contract: hipdiscovery/Claude-Instructions/shared/AGENT-CONTRACT.md @ 2026-11-16
+System map and shared ceilings: hipdiscovery/Claude-Instructions/SYSTEM.md

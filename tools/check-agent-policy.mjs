@@ -4,8 +4,8 @@ import { join, relative } from "node:path";
 const ROOT = process.cwd();
 const AGENTS = "AGENTS.md";
 // The shared contract is referenced by version, never copied. The version itself is
-// checked by hipdiscovery/claude-instructions/shared/check-contract.mjs.
-const CONTRACT_REF = /^Shared contract: hipdiscovery\/claude-instructions\/shared\/AGENT-CONTRACT\.md @ \d{4}-\d{2}-\d{2}$/m;
+// checked by hipdiscovery/Claude-Instructions/shared/check-contract.mjs.
+const CONTRACT_REF = /^Shared contract: hipdiscovery\/Claude-Instructions\/shared\/AGENT-CONTRACT\.md @ \d{4}-\d{2}-\d{2}$/m;
 const LOCAL_COPY = "docs/agent-guides/agent-contract.md";
 const FORBIDDEN_FILES = new Set(["CLAUDE.md", "CODEX.md", "CHATGPT.md"]);
 const FORBIDDEN_DIRS = new Set([".claude", ".codex", ".agents"]);
