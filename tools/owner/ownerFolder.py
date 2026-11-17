@@ -39,7 +39,8 @@ def trustedRepo(root, config):
     repo = config["repository"]
     allowed = {f"https://github.com/{repo}.git", f"https://github.com/{repo}",
                f"git@github.com:{repo}.git", f"ssh://git@github.com/{repo}.git"}
-    if origin not in allowed:
+    # GitHub owner/repo names are case-insensitive; older clones keep the old casing.
+    if origin.lower() not in {a.lower() for a in allowed}:
         raise RuntimeError("Unexpected Git origin; nothing was updated.")
     top = Path(run(["git", "rev-parse", "--show-toplevel"], root, True)).resolve()
     if top != root.resolve():

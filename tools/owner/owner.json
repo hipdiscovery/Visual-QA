@@ -1,7 +1,7 @@
 {
-  "repository": "hipdiscovery/visual-qa",
+  "repository": "hipdiscovery/Visual-QA",
   "branch": "master",
-  "folder": "visual-qa",
+  "folder": "Visual-QA",
   "title": "Visual QA",
   "sourceFolder": "Project",
   "mainFile": "Visual QA.cmd",

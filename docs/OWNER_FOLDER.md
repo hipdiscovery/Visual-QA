@@ -13,7 +13,7 @@ visual-qa/
 
 Requires Python 3.10+ with the Windows `py -3` launcher and authenticated Git. Product-specific prerequisites still apply.
 
-Double-click `Setup Owner Folder.cmd` in the source checkout. An existing checkout named `Project` is reused in place. For a fresh install, the default destination is `C:\GitHub Repos\visual-qa`; setup clones the trusted `hipdiscovery/visual-qa` `master` branch beneath it.
+Double-click `Setup Owner Folder.cmd` in the source checkout. An existing checkout named `Project` is reused in place. For a fresh install, the default destination is `C:\GitHub Repos\visual-qa`; setup clones the trusted `hipdiscovery/Visual-QA` `master` branch beneath it.
 
 To choose another destination:
 
